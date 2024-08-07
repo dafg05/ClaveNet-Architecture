@@ -31,7 +31,7 @@ class GrooveTransformer(nn.Module):
 
 class InputLayer(torch.nn.Module):
     """
-    Copy_pasted from https://github.com/behzadhaki/BaseGrooveTransformers/blob/main/models/io_layers.py
+    From https://github.com/behzadhaki/BaseGrooveTransformers/blob/main/models/io_layers.py
     """
     def __init__(self, embedding_size, d_model, dropout, max_len):
         super(InputLayer, self).__init__()
@@ -53,7 +53,7 @@ class InputLayer(torch.nn.Module):
     
 class Encoder(torch.nn.Module):
     """
-    Copy pasted from https://github.com/behzadhaki/BaseGrooveTransformers/blob/main/models/encoder.py
+    From https://github.com/behzadhaki/BaseGrooveTransformers/blob/main/models/encoder.py
     """
 
     def __init__(self, d_model, nhead, dim_feedforward, dropout, num_encoder_layers):
@@ -100,7 +100,7 @@ class OutputLayer(torch.nn.Module):
 
 class PositionalEncoding(nn.Module):
     """
-    Copy pasted from https://github.com/behzadhaki/BaseGrooveTransformers/blob/main/models/utils.py#L5
+    From https://github.com/behzadhaki/BaseGrooveTransformers/blob/main/models/utils.py#L5
     """
     def __init__(self, d_model, max_len=32, dropout=0.1):
         super(PositionalEncoding, self).__init__()
@@ -133,7 +133,6 @@ class PositionalEncoding(nn.Module):
         return x
         
 if __name__ == "__main__":
-
     device = (
         "cuda"
         if torch.cuda.is_available()

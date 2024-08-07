@@ -2,7 +2,7 @@ import torch
 import numpy as np
 from torch import nn
 
-from ..training.hvoLoss import HVO_Loss, getHitAccuracy
+from cnarch.hvoLoss import HVO_Loss, getHitAccuracy
 
 SEED = 0
 STEPS = 32
@@ -115,7 +115,7 @@ def compareLosses(pred, target):
     paper_total_loss, paper_hits_loss = paper_calculate_loss(pred, target)
     my_total_loss, my_hits_loss  = my_calculate_loss(pred, target)
 
-    if paper_total_loss == my_total_loss and paper_hits_loss == my_hits_loss:
+    if np.isclose(paper_total_loss, my_total_loss, rtol=1e-5) and np.isclose(paper_hits_loss, my_hits_loss, rtol=1e-5):
         print("SUCCESS!!! Losses are equal.")
         print(f"Paper total loss: {paper_total_loss}, My total Loss: {my_total_loss}, Paper hits loss: {paper_hits_loss}, My hits loss: {my_hits_loss}")
     else:
@@ -126,7 +126,7 @@ def compareAccuracies(pred, target):
     paper_accuracy = paper_calculate_accuracy(pred, target)
     my_accuracy = my_calculate_accuracy(pred, target)
 
-    if paper_accuracy == my_accuracy:
+    if np.isclose(paper_accuracy, my_accuracy, rtol=1e-5):
         print("SUCCESS!!! Accuracies are equal.")
         print(f"Paper accuracy: {paper_accuracy}, My accuracy: {my_accuracy}")
     else:
@@ -141,6 +141,6 @@ if __name__ == "__main__":
         pred = generateRandomHVOArray(rng)
         target = generateRandomHVOArray(rng)
 
-        # compareLosses(pred, target)
+        compareLosses(pred, target)
         compareAccuracies(pred, target)
     

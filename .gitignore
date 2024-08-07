@@ -1,2 +1,5 @@
 .DS_Store
 venv/
+
+cnarch/__pycache__/
+tests/__pycache__/
