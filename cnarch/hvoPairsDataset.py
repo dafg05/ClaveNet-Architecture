@@ -3,6 +3,7 @@ import pandas as pd
 import torch
 
 from torch.utils.data import Dataset
+from typing import Tuple
 
 class HvoPairsDataset(Dataset):
     def __init__(self, inputs: np.ndarray, outputs: np.ndarray, dev: str, transform=None, target_transform=None):
@@ -14,7 +15,7 @@ class HvoPairsDataset(Dataset):
     def __len__(self):
         return len(self.hvo_pairs)
     
-    def __getitem__(self, idx) -> tuple[np.ndarray, np.ndarray]:
+    def __getitem__(self, idx) -> Tuple[np.ndarray, np.ndarray]:
         """
         Returns a tuple of (monotonic_hvo, target_hvo), where target_hvo is the full hvo groove
         """
@@ -36,3 +37,6 @@ class HvoPairsDataset(Dataset):
         inputs = torch.FloatTensor(inputs).to(self.dev)
         outputs = torch.FloatTensor(outputs).to(self.dev)
         return list(zip(inputs, outputs))
+    
+if __name__ == "__main__":
+    print("this is hvoPairsDataset.py")
